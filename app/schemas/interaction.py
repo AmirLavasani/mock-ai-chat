@@ -1,6 +1,6 @@
 from typing import List, Optional
 from pydantic import BaseModel, UUID4
-from message import Message
+from .message import Message
 from datetime import datetime
 
 
@@ -13,7 +13,7 @@ class Interaction(BaseModel):
 
 
 class InteractionCreateSuccessResponse(BaseModel):
-    interaction_id: UUID4
+    id: UUID4
 
 
 class InteractionSetting(BaseModel):

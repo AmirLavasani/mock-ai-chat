@@ -6,10 +6,10 @@
 """
 
 from fastapi import FastAPI
-from routers import register_routers
+from app.routers import register_routers
 from contextlib import asynccontextmanager
 
-from version import VERSION
+from app.version import VERSION
 
 from app.schemas.message import Message
 
@@ -23,19 +23,18 @@ async def lifespan(app: FastAPI):
     print("shutting down gracefully...".upper())
 
 
-app = FastAPI(
-    lifespan=lifespan,
-    title="Mock AI Chat",
-    version=VERSION
-)
+app = FastAPI(lifespan=lifespan, title="Mock AI Chat", version=VERSION)
 
 register_routers(app)
+
 
 # Root endpoint
 @app.get("/")
 async def root():
     return {"message": "Welcome to the Mock AI Chat API"}
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,36 +1,73 @@
-from fastapi import APIRouter
-from app.errors.error import HTTPInteractionCreateErrorResponse
-from app.schemas.interaction import InteractionCreateSuccessResponse, InteractionSetting
-from app.schemas import Interaction
-from uuid import UUID, uuid4
-from datetime import datetime
+from typing import List
+
+from fastapi import APIRouter, status
+
+from app.errors.error import (
+    HTTPInteractionCreateErrorResponse,
+    HTTPInteractionFetchErrorResponse,
+)
+from app.schemas.interaction import (
+    InteractionCreateSuccessResponse,
+    InteractionSetting,
+    Interaction,
+)
+from app.crud.db import (
+    create_interaction_crud,
+    fetch_all_interactions_crud,
+    fetch_interaction_by_id_crud,
+)
+
 
 router = APIRouter()
 
-@router.post("", response_model=InteractionCreateSuccessResponse, status_code=201)
+
+@router.post(
+    "/",
+    response_model=InteractionCreateSuccessResponse,
+    status_code=status.HTTP_201_CREATED,
+)
 async def create_interaction(interaction_setting: InteractionSetting):
-    # Create the interaction
-    current_time = datetime.now()
+    """
+    Create a new interaction with the provided settings.
 
-    # Example data for interaction creation (replace this with your actual data)
-    new_interaction_data = {
-        "id": uuid4(),  # Generating a new UUID for the interaction
-        "created_at": current_time,
-        "updated_at": current_time,
-        "settings": interaction_setting,
-        "messages": []
-    }
+    Args:
+        interaction_setting (InteractionSetting): Settings for the new interaction.
 
-    # Create the interaction using the CRUD function
-    # created_interaction_id = create_interaction(Interaction(**new_interaction_data))
-    return {"message": "New interaction created"}
+    Returns:
+        InteractionCreateSuccessResponse: Response containing the created interaction ID.
+    """
+    created_interaction_id = await create_interaction_crud(interaction_setting)
+    if not created_interaction_id:
+        raise HTTPInteractionCreateErrorResponse
+    return InteractionCreateSuccessResponse(id=str(created_interaction_id))
 
-@router.get("")
+
+@router.get("/", response_model=List[Interaction], status_code=status.HTTP_200_OK)
 async def get_all_interactions():
-    # Logic to fetch all interactions
-    return {"message": "Get all interactions"}
+    """
+    Retrieve all interactions.
 
-@router.get("/{interaction_id}")
-async def get_one_interaction():
-    # Logic to fetch one interaction by interaction_id
-    return {"message": "Get one interaction with interaction_id"}
+    Returns:
+        List[Interaction]: List of all interactions.
+    """
+    interactions = await fetch_all_interactions_crud()
+    return interactions
+
+
+@router.get(
+    "/{interaction_id}", response_model=Interaction, status_code=status.HTTP_200_OK
+)
+async def get_one_interaction(interaction_id: str):
+    """
+    Retrieve a specific interaction by its ID.
+
+    Args:
+        interaction_id (str): ID of the interaction to retrieve.
+
+    Returns:
+        Interaction: The requested interaction.
+    """
+    interaction = await fetch_interaction_by_id_crud(interaction_id)
+    if interaction is None:
+        raise HTTPInteractionFetchErrorResponse
+    return interaction

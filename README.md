@@ -13,6 +13,12 @@ The primary objective is to create a chat application with the following API end
 - Create a message on an interaction.
 - Fetch all messages in an interaction.
 
+<img
+  alt="the image of the openAPI docs endpoints"
+  style={{ margin: 'auto', textAlign: 'center', borderRadius: '12px' }}
+  src="https://github.com/AmirLavasani/mock-ai-chat/blob/main/assets/images/mock-ai-chat-api-docs.png?raw=true"
+/>
+
 ## Table of Contents
 
 1. [Installation](#installation)
@@ -60,6 +66,9 @@ The primary objective is to create a chat application with the following API end
     ```bash
     make run
     ```
+
+> If you encountered missing imports run the following command:
+export PYTHONPATH=\`pwd\` 
 
 ## Project Structure
 

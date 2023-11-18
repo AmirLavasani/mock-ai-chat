@@ -42,6 +42,9 @@ To build the docker image:
 ```bash
 docker-compose build
 ```
+Head to the following address to access the OAS endpoints:
+
+> [http://0.0.0.0:8000/docs](http://0.0.0.0:8000/docs)
 
 ### Using the source:
 

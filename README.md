@@ -29,6 +29,16 @@ The primary objective is to create a chat application with the following API end
 
 ## Installation
 
+### Using docker-compose:
+
+Run the following docker-compose command:
+
+```bash
+docker-compose up
+```
+
+### Using the source:
+
 1. Clone the repository:
 
     ```bash
@@ -97,13 +107,14 @@ export PYTHONPATH=\`pwd\`
 - Defines data models as Python classes using Pydantic models or plain classes.
 - Includes methods for CRUD operations or data manipulation within these models.
 
-### Utilities
-- Houses reusable functions, helper methods, or constants used throughout the application.
-
 ### Documentation
 - **docs:** Stores code documentation and usage guidelines.
 - **README.md:** Describes project structure, setup instructions, and basic usage.
 - Embeds docstrings and comments within the code to explain complex functionalities, particularly in models and routers.
+
+- open docs/app/index.html to see the static documentation of the project.
+
+![the image of the openAPI docs endpoints](https://github.com/AmirLavasani/mock-ai-chat/blob/main/assets/images/docs-screenshot.png?raw=true)
 
 ### Testing
 - Uses `pytest app` to test the entire app.
@@ -131,6 +142,13 @@ export PYTHONPATH=\`pwd\`
     - Retrieve a specific interaction by its ID.
 
 ### Messages
+1. Create a new message
+    - **POST** `/messages/{interaction_id}`
+    - Create a new messages.
+
+2. Fetch all messages
+    - **GET** `/messages/{interaction_id}`
+    - Retrieve a list of all messages in an interaction.
 
 ### Sample Output
 

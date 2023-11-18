@@ -10,7 +10,7 @@ class InteractionCreateErrorResponse(BaseModel):
 
 
 HTTPInteractionCreateErrorResponse = HTTPException(
-    status_code=404, detail=InteractionCreateErrorResponse().dict()
+    status_code=404, detail=InteractionCreateErrorResponse().model_dump()
 )
 
 
@@ -21,7 +21,7 @@ class InteractionFetchErrorResponse(BaseModel):
 
 
 HTTPInteractionFetchErrorResponse = HTTPException(
-    status_code=404, detail=InteractionFetchErrorResponse().dict()
+    status_code=404, detail=InteractionFetchErrorResponse().model_dump()
 )
 
 
@@ -32,7 +32,7 @@ class MessageCreateErrorResponse(BaseModel):
 
 
 HTTPMessageCreateErrorResponse = HTTPException(
-    status_code=404, detail=MessageCreateErrorResponse().dict()
+    status_code=404, detail=MessageCreateErrorResponse().model_dump()
 )
 
 
@@ -43,5 +43,5 @@ class MessageFetchErrorResponse(BaseModel):
 
 
 HTTPMessageFetchErrorResponse = HTTPException(
-    status_code=404, detail=MessageFetchErrorResponse().dict()
+    status_code=404, detail=MessageFetchErrorResponse().model_dump()
 )

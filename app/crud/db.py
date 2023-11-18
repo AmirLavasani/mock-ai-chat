@@ -25,7 +25,7 @@ async def create_interaction_crud(interaction_setting: InteractionSetting) -> UU
         "id": interaction_id,
         "created_at": current_time,
         "updated_at": current_time,
-        "settings": interaction_setting.dict(),
+        "settings": interaction_setting.model_dump(),
         "messages": [],
     }
 

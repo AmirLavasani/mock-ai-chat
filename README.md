@@ -83,51 +83,53 @@ docker-compose build
 > If you encountered missing imports run the following command:
 export PYTHONPATH=\`pwd\` 
 
+### Build docs:
+To build and update documentation run the following command: 
+
+```bash
+make docs
+```
+
+### Lint Project:
+To build and update documentation run the following command: 
+
+```bash
+make lint
+```
+
 ## Project Structure
 
 ### Directory Organization
 
 #### Root Directory
-- **README.md:** Describes project overview, setup instructions, and usage details.
-- **.gitignore:** Specifies files and directories to ignore in version control.
-- **requirements.txt:** Contains project dependencies for package installation.
-- **docs:** Stores documentation files related to code and usage instructions.
+- **app:** Contains the source code.
+- **assets:** Contains static assets of the program like images.
+- **tests:** Contains project tests.
+- **.github:** Stores CI/CD using Github actions workflow yml file.
+
+Here is the example Github actions workflow:
+
+![the image of the github workflow CI/CD](https://github.com/AmirLavasani/mock-ai-chat/blob/main/assets/images/github-workflow.png?raw=true)
 
 #### App Directory
 - **main.py:** Serves as the entry point, initializes the FastAPI application.
 - **routers:** Houses API routers for different functionalities (e.g., `interactions_router.py`, `messages_router.py`).
 - **schemas:** Contains Python classes defining interactions and messages (e.g., `interaction.py`, `message.py`).
-- **utils:** Stores utility functions or helper methods used across the application.
+- **crud:** Stores database mock functions.
 
-### Main Files
-
-#### main.py
-- Initializes the FastAPI application.
-- Imports routers and configures them within the application.
-
-### Routers
-- Utilizes FastAPI's `APIRouter()` to logically organize API endpoints.
-- Registers routes, methods, and corresponding functions/handlers for each endpoint.
-
-### Schemas
-- Defines data models as Python classes using Pydantic models or plain classes.
-- Includes methods for CRUD operations or data manipulation within these models.
-
-### Documentation
+#### Documentation
 - **docs:** Stores code documentation and usage guidelines.
-- **README.md:** Describes project structure, setup instructions, and basic usage.
-- Embeds docstrings and comments within the code to explain complex functionalities, particularly in models and routers.
 
 - open docs/app/index.html to see the static documentation of the project.
 
 ![the image of the openAPI docs endpoints](https://github.com/AmirLavasani/mock-ai-chat/blob/main/assets/images/docs-screenshot.png?raw=true)
 
-### Testing
-- Uses `pytest app` to test the entire app.
+#### Testing
+- Uses `pytest tests` to test the entire app.
 - **tests:** Contains test files (e.g., `test_interaction.py`, `test_message.py`).
 - Writes unit tests using frameworks like pytest to validate model, router, and utility functionality.
 
-### Code Formatting and Linting
+#### Code Formatting and Linting
 - Utilizes `make lint` for code formatting and linting throughout the app.
 - Enforces consistent code style using tools like `black` for formatting and `flake8` for linting.
 - Configures IDE or editor settings to comply with coding standards
@@ -160,7 +162,7 @@ export PYTHONPATH=\`pwd\`
 
 A sample output of fetching all interaction objects with messages is provided.
 
-### Fetch All Interaction Objects:
+#### Fetch All Interaction Objects:
 
 ```json
 {
@@ -193,3 +195,20 @@ A sample output of fetching all interaction objects with messages is provided.
 }
 ```
 
+#### Fetch All Messages in an Interaction:
+```json
+[
+  {
+    "id": "37431109-2eea-439b-bd68-e060ef1df093",
+    "created_at": "2023-11-18T09:08:00.673658",
+    "role": "human",
+    "content": "Hi, What can you do?"
+  },
+  {
+    "id": "f0b2d7e7-608b-4590-975d-dff04df402a7",
+    "created_at": "2023-11-18T09:08:26.119995",
+    "role": "AI",
+    "content": "I can assist with a wide range of tasks! Whether it's coding, providing information on various topics, helping with project management, guiding through technical setups, or even just chatting. What do you need help with today?"
+  }
+]
+```

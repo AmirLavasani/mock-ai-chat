@@ -37,6 +37,12 @@ Run the following docker-compose command:
 docker-compose up
 ```
 
+To build the docker image:
+
+```bash
+docker-compose build
+```
+
 ### Using the source:
 
 1. Clone the repository:

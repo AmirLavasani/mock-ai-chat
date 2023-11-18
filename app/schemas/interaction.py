@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 from pydantic import BaseModel, UUID4
 from .message import Message
 from datetime import datetime

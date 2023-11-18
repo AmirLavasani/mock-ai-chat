@@ -46,6 +46,26 @@
 <dd>ID of the created interaction.</dd>
 </dl></div>
 </dd>
+<dt id="app.crud.db.create_message_crud"><code class="name flex">
+<span>async def <span class="ident">create_message_crud</span></span>(<span>interaction_id: str, content: str, role: str) ‑> Optional[uuid.UUID]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new message for a specific interaction.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>interaction_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the interaction.</dd>
+<dt><strong><code>content</code></strong> :&ensp;<code>str</code></dt>
+<dd>The content of the message.</dd>
+<dt><strong><code>role</code></strong> :&ensp;<code>str</code></dt>
+<dd>The role of the message (e.g., 'human' or 'ai').</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[UUID]</code></dt>
+<dd>The ID of the created message, if successful, else None.</dd>
+</dl></div>
+</dd>
 <dt id="app.crud.db.fetch_all_interactions_crud"><code class="name flex">
 <span>async def <span class="ident">fetch_all_interactions_crud</span></span>(<span>) ‑> List</span>
 </code></dt>
@@ -57,8 +77,24 @@
 <dd>List of all interactions.</dd>
 </dl></div>
 </dd>
+<dt id="app.crud.db.fetch_all_messages_crud"><code class="name flex">
+<span>async def <span class="ident">fetch_all_messages_crud</span></span>(<span>interaction_id: str) ‑> Optional[List[<a title="app.schemas.message.Message" href="../schemas/message.html#app.schemas.message.Message">Message</a>]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve all messages for a specific interaction.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>interaction_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the interaction.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[List[Message]]</code></dt>
+<dd>List of all messages for the interaction, if found, else None.</dd>
+</dl></div>
+</dd>
 <dt id="app.crud.db.fetch_interaction_by_id_crud"><code class="name flex">
-<span>async def <span class="ident">fetch_interaction_by_id_crud</span></span>(<span>interaction_id: str)</span>
+<span>async def <span class="ident">fetch_interaction_by_id_crud</span></span>(<span>interaction_id: str) ‑> Optional[<a title="app.schemas.interaction.Interaction" href="../schemas/interaction.html#app.schemas.interaction.Interaction">Interaction</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve a specific interaction by its ID.</p>
@@ -92,7 +128,9 @@
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
 <li><code><a title="app.crud.db.create_interaction_crud" href="#app.crud.db.create_interaction_crud">create_interaction_crud</a></code></li>
+<li><code><a title="app.crud.db.create_message_crud" href="#app.crud.db.create_message_crud">create_message_crud</a></code></li>
 <li><code><a title="app.crud.db.fetch_all_interactions_crud" href="#app.crud.db.fetch_all_interactions_crud">fetch_all_interactions_crud</a></code></li>
+<li><code><a title="app.crud.db.fetch_all_messages_crud" href="#app.crud.db.fetch_all_messages_crud">fetch_all_messages_crud</a></code></li>
 <li><code><a title="app.crud.db.fetch_interaction_by_id_crud" href="#app.crud.db.fetch_interaction_by_id_crud">fetch_interaction_by_id_crud</a></code></li>
 </ul>
 </li>

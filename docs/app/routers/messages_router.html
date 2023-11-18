@@ -31,16 +31,40 @@
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="app.routers.messages_router.create_message"><code class="name flex">
-<span>async def <span class="ident">create_message</span></span>(<span>message: <a title="app.schemas.message.Message" href="../schemas/message.html#app.schemas.message.Message">Message</a>)</span>
+<span>async def <span class="ident">create_message</span></span>(<span>interaction_id: str, content: str, role: str)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Create a new message for a specific interaction.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>interaction_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the interaction.</dd>
+<dt><strong><code>content</code></strong> :&ensp;<code>str</code></dt>
+<dd>The content of the message.</dd>
+<dt><strong><code>role</code></strong> :&ensp;<code>str</code></dt>
+<dd>The role of the message (e.g., 'human' or 'ai').</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>MessageCreateSuccessResponse</code></dt>
+<dd>Response containing the created message ID.</dd>
+</dl></div>
 </dd>
 <dt id="app.routers.messages_router.get_all_messages"><code class="name flex">
-<span>async def <span class="ident">get_all_messages</span></span>(<span>)</span>
+<span>async def <span class="ident">get_all_messages</span></span>(<span>interaction_id: str)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Retrieve all messages for a specific interaction.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>interaction_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the interaction.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Message]</code></dt>
+<dd>List of all messages for the interaction.</dd>
+</dl></div>
 </dd>
 </dl>
 </section>

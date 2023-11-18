@@ -59,8 +59,9 @@ async def fetch_interaction_by_id_crud(interaction_id: str) -> Optional[Interact
     return INTERACTIONS_HASH.get(interaction_id, None)
 
 
-async def create_message_crud(interaction_id: str, content: str, role: str) -> Optional[UUID]:
-    
+async def create_message_crud(
+    interaction_id: str, content: str, role: str
+) -> Optional[UUID]:
     """
     Create a new message for a specific interaction.
 

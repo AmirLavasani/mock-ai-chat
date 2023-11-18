@@ -90,6 +90,7 @@ async def create_message_crud(interaction_id: str, content: str, role: str) -> O
 
     message = Message(**new_message_data)
     interaction.messages.append(message)
+    interaction.updated_at = current_time
 
     return message_id
 

@@ -17,6 +17,6 @@ class InteractionCreateSuccessResponse(BaseModel):
 
 
 class InteractionSetting(BaseModel):
-    ai_model_name: str
-    role: str
-    prompt: str
+    ai_model_name: str = "GPT-3"
+    role: str = "System"
+    prompt: str = "Sample prompt for testing"

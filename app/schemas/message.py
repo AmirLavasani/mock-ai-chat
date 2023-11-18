@@ -1,8 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4
+from datetime import datetime
 
 
 class Message(BaseModel):
-    id: str
-    created_at: str
+    id: UUID4
+    created_at: datetime
     role: str
     content: str
+
+
+class MessageCreateSuccessResponse(BaseModel):
+    id: UUID4

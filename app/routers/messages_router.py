@@ -1,22 +1,48 @@
 from fastapi import APIRouter
 from typing import List
-from app.schemas.message import Message  # Import the Message Pydantic model
+from app.schemas.message import Message, MessageCreateSuccessResponse
+from app.errors.error import (
+    HTTPMessageCreateErrorResponse,
+    HTTPMessageFetchErrorResponse,
+)
+from app.crud.db import create_message_crud, fetch_all_messages_crud
 
 router = APIRouter()
 
 
-# Updated route to receive a Message model and return an empty 200 response
 @router.post("/{interaction_id}")
-async def create_message(message: Message):
-    # Logic to create a message in a specific interaction
-    # You can use the 'message' data received to process/store the message
-    return {}
+async def create_message(interaction_id: str, content: str, role: str):
+    """
+    Create a new message for a specific interaction.
+
+    Args:
+        interaction_id (str): The ID of the interaction.
+        content (str): The content of the message.
+        role (str): The role of the message (e.g., 'human' or 'ai').
+
+    Returns:
+        MessageCreateSuccessResponse: Response containing the created message ID.
+    """
+
+    created_message_id = await create_message_crud(interaction_id, content, role)
+    if not created_message_id:
+        raise HTTPMessageCreateErrorResponse
+    return MessageCreateSuccessResponse(id=str(created_message_id))
 
 
-# Updated route to receive an interaction ID and return a list of Messages
 @router.get("/{interaction_id}", response_model=List[Message])
-async def get_all_messages():
-    # Logic to fetch all messages in a specific interaction
-    # Replace this with the actual code to retrieve messages based on 'interaction_id'
-    messages = []  # Placeholder for retrieved messages
+async def get_all_messages(interaction_id: str):
+    """
+    Retrieve all messages for a specific interaction.
+
+    Args:
+        interaction_id (str): The ID of the interaction.
+
+    Returns:
+        List[Message]: List of all messages for the interaction.
+    """
+
+    messages = await fetch_all_messages_crud(interaction_id)
+    if messages is None:
+        raise HTTPMessageFetchErrorResponse
     return messages

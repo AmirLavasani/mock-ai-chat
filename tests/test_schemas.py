@@ -1,6 +1,7 @@
 import pytest
 from pydantic import ValidationError
-from app.schemas import Interaction, Message
+from app.schemas.interaction import Interaction
+from app.schemas.message import Message
 
 def test_interaction_model():
     interaction_data = {
@@ -8,7 +9,7 @@ def test_interaction_model():
         "created_at": "2023-10-13T14:27:28",
         "updated_at": "2023-10-13T14:27:28",
         "settings": {
-            "model_name": "GPT4",
+            "ai_model_name": "GPT4",
             "role": "System",
             "prompt": "As a helpful IFS therapist chatbot, your role is to guide users through a simulated IFS session in a safe and supportive manner with a few changes to the exact steps of the IFS model."
         },
@@ -30,7 +31,7 @@ def test_interaction_model():
 
     # Test valid interaction data
     interaction_model = Interaction(**interaction_data)
-    assert interaction_model.id == "ed227192-6f7e-4416-920c-6bc54400f194"
+    assert str(interaction_model.id) == "ed227192-6f7e-4416-920c-6bc54400f194"
     assert len(interaction_model.messages) == 2
 
     # Test invalid interaction data

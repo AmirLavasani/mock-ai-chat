@@ -17,6 +17,6 @@ class InteractionCreateSuccessResponse(BaseModel):
 
 
 class InteractionSetting(BaseModel):
-    model_name: str
+    ai_model_name: str
     role: str
     prompt: str

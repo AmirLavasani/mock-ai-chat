@@ -164,7 +164,7 @@ A sample output of fetching all interaction objects with messages is provided.
       "created_at": "2023-10-13T14:27:28",
       "updated_at": "2023-10-13T14:27:28",
       "settings": {
-        "model_name": "GPT4",
+        "ai_model_name": "GPT4",
         "role": "System",
         "prompt": "As a helpful IFS therapist chatbot, your role is to guide users through a simulated IFS session in a safe and supportive manner with a few changes to the exact steps of the IFS model."
        },

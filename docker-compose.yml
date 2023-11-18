@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    image: mock-chat-server:v1.0.0
+    image: mock-chat-server:latest
     build:
       context: .
       dockerfile: Dockerfile
